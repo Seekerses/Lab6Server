@@ -36,7 +36,7 @@ public class CommandShow implements Command {
                 return ("Collection is empty!");
             } else {
                 ShowInfo showInfo = new ShowInfo();
-                TableController.getCurrentTable().getProducts().stream().sorted(new PlaceComparator()).forEach(y -> showInfo.addInfo(y.toString()));
+                TableController.getCurrentTable().getProducts().stream().sorted(new NameComparator()).sorted(new PlaceComparator()).forEach(y -> showInfo.addInfo(y.toString()));
                 return showInfo.getInfo();
             }
         }
