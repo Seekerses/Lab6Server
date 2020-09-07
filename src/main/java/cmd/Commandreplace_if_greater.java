@@ -25,8 +25,10 @@ public class Commandreplace_if_greater implements Command,Preparable{
     public String execute(String[] args) {
         if (product == null || key == null){
             prepare(args);
-            execute(args);
         }else try {
+            if (args == null || args[0] == null) {
+                return ("Please enter KEY");
+            }
             int c = 0;
             for (String key : TableController.getCurrentTable().getKey()) {
                 if (key.equals(args[0])) {
@@ -40,6 +42,8 @@ public class Commandreplace_if_greater implements Command,Preparable{
                     if (map.getKey().compareTo(args[0]) == 0) {
                         if (product != null && product.getPrice() > map.getValue().getPrice()) {
                             TableController.getCurrentTable().replace(map.getKey(), product);
+                            this.product = null;
+                            this.key = null;
                         }
                     }
                 }

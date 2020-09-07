@@ -26,11 +26,13 @@ public class CommandUpdate implements Command, Preparable{
      */
 
     Product product = null;
+    long id;
 
     @Override
     public String execute(String[] args) {
 
         if (product == null){
+            this.id= Long.parseLong(args[0]);
             prepare(args);
         }
         else {
@@ -40,10 +42,9 @@ public class CommandUpdate implements Command, Preparable{
                 }
                 int counter = 0;
                 Iterator<Map.Entry<String, Product>> it = TableController.getCurrentTable().getSet().iterator();
-                int i = Integer.parseInt(args[0]);
                 while (it.hasNext()) {
                     Map.Entry<String, Product> map = it.next();
-                    if (map.getValue().getId() == i) {
+                    if (map.getValue().getId() == id) {
                         counter++;
                         TableController.getCurrentTable().replace(map.getKey(), product);
                     }

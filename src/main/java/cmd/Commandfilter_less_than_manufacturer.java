@@ -4,6 +4,7 @@ import consolehandler.TableController;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Objects;
 
 /**
  * get elements which have lower manufacturer id than one's given
@@ -13,7 +14,7 @@ import java.util.Comparator;
 
 public class Commandfilter_less_than_manufacturer implements Command {
     /**
-     * counter will control a situation when all elements have higher manufacturer name than one's given
+     * counter will control a situation when all elements have higher manufacturer ID than one's given
      */
     private static final long serialVersionUID = 1337000006L;
 
@@ -33,7 +34,7 @@ public class Commandfilter_less_than_manufacturer implements Command {
     public String execute(String[] args) {
         try {
             ShowInfo showInfo = new ShowInfo();
-            TableController.getCurrentTable().getProducts().stream().filter(p -> p.getManufacturer().getFullName().length() < args[0].length())
+            TableController.getCurrentTable().getProducts().stream().filter(p -> p.getManufacturer().getId() < Integer.parseInt(args[0]))
                     .sorted(Comparator.comparing(p -> p.getManufacturer().getFullName()))
                     .forEach(x -> showInfo.addInfo(x.toString()));
 
