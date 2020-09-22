@@ -23,12 +23,10 @@ public class Commandreplace_if_greater implements Command,Preparable{
 
     @Override
     public String execute(String[] args) {
-        if (product == null || key == null){
+        if (key == null){
             prepare(args);
-        }else try {
-            if (args == null || args[0] == null) {
-                return ("Please enter KEY");
-            }
+        }
+        try {
             int c = 0;
             for (String key : TableController.getCurrentTable().getKey()) {
                 if (key.equals(args[0])) {
@@ -39,20 +37,18 @@ public class Commandreplace_if_greater implements Command,Preparable{
                 return ("No such key\nAvailable keys: " + TableController.getCurrentTable().getKey());
             } else {
                 for (Map.Entry<String, Product> map : TableController.getCurrentTable().getSet()) {
-                    if (map.getKey().compareTo(args[0]) == 0) {
+                    if (map.getKey().compareTo(key) == 0) {
                         if (product != null && product.getPrice() > map.getValue().getPrice()) {
                             TableController.getCurrentTable().replace(map.getKey(), product);
-                            this.product = null;
-                            this.key = null;
+                            return "Element has been replaced";
                         }
                     }
                 }
-                return ("Element has been replaced");
+                return ("Empty product. Try again...");
             }
         } catch (NumberFormatException e) {
             return ("Argument must be a number");
         }
-        return null;
     }
     @Override
     public void prepare(String[] args) {

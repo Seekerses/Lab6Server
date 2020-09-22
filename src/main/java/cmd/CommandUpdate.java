@@ -41,11 +41,10 @@ public class CommandUpdate implements Command, Preparable{
                     return ("Please enter ID");
                 }
                 int counter = 0;
-                Iterator<Map.Entry<String, Product>> it = TableController.getCurrentTable().getSet().iterator();
-                while (it.hasNext()) {
-                    Map.Entry<String, Product> map = it.next();
+                for (Map.Entry<String, Product> map : TableController.getCurrentTable().getSet()) {
                     if (map.getValue().getId() == id) {
                         counter++;
+                        System.out.println(counter);
                         TableController.getCurrentTable().replace(map.getKey(), product);
                     }
                 }

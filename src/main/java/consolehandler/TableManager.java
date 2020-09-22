@@ -173,4 +173,10 @@ public class TableManager {
     public void setTable(Hashtable<String, Product> table) {
         this.table = table;
     }
+
+    public void loadTable(){
+        try{
+
+        }
+    }
 }

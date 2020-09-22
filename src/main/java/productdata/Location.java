@@ -26,6 +26,18 @@ public class Location implements Serializable {
         this.z = z;
     }
 
+    public int getY() {
+        return y;
+    }
+
+    public Long getX() {
+        return x;
+    }
+
+    public Long getZ() {
+        return z;
+    }
+
     @Override
     public String toString(){
         return ("x = " + x + " y = " + y + " z = " + z);

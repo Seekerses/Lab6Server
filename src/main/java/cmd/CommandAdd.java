@@ -1,4 +1,6 @@
 package cmd;
+import BD.DataHandler;
+import BD.DataManager;
 import consolehandler.Initializer;
 import consolehandler.TableController;
 import productdata.Product;
@@ -34,6 +36,7 @@ public class CommandAdd implements Command, Preparable, Serializable {
             execute(args);
         }
         else {
+            DataManager dataManager = new DataManager(new DataHandler())
             TableController.getCurrentTable().put(key, product);
             return ("Insertion complete...");
         }

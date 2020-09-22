@@ -22,6 +22,10 @@ public class Address implements Serializable {
         this.town = town;
     }
 
+    public Location getTown() {
+        return town;
+    }
+
     @Override
     public String toString(){
         return (street + ";" + (town == null ? "не указано": town.output()));
